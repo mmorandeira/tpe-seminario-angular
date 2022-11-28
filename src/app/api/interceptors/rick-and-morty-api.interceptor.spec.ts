@@ -1,16 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RickAndMortyApiInterceptor } from './rick-and-morty-api.interceptor';
+import { RickAndMortyAPIInterceptor } from './rick-and-morty-api.interceptor';
 
-describe('RickAndMortyApiInterceptor', () => {
+describe('RickAndMortyAPIInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
-      RickAndMortyApiInterceptor
+      RickAndMortyAPIInterceptor
       ]
   }));
 
   it('should be created', () => {
-    const interceptor: RickAndMortyApiInterceptor = TestBed.inject(RickAndMortyApiInterceptor);
+    const interceptor: RickAndMortyAPIInterceptor = TestBed.inject(RickAndMortyAPIInterceptor);
     expect(interceptor).toBeTruthy();
   });
 });

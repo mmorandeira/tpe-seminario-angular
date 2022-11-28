@@ -8,7 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CharacterCardComponent } from './character-card/character-card.component';
 import { CharactersComponent } from './characters/characters.component';
 import { CharacterDetailComponent } from './character-detail/character-detail.component';
-import { RickAndMortyApiInterceptor } from './api/interceptors/rick-and-morty-api.interceptor';
+import { RickAndMortyAPIInterceptor } from './api/interceptors/rick-and-morty-api.interceptor';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { RickAndMortyApiInterceptor } from './api/interceptors/rick-and-morty-ap
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: RickAndMortyApiInterceptor,
+      useClass: RickAndMortyAPIInterceptor,
       multi: true,
     },
   ],
