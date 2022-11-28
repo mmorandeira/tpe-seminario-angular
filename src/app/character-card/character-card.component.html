@@ -1,7 +1,27 @@
-<div class="card">
-    <img src="{{character?.image}}" class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">{{character?.name}}</h5>
-        <p class="card-text">{{character?.name}} is from {{character?.origin?.name}} and currently is {{character?.status}}.</p>
+<a [routerLink]="['/characters', character?.name]" [state]="{character}">
+  <div class="card mb-3" style="max-width: 540px">
+    <div class="row g-0">
+      <div class="col-md-4 image">
+        <img src="{{ character?.image }}" class="card-img-top" alt="..." />
+        <div class="img-specie" attr.specie="{{ character?.species | lowercase }}">
+          <p>{{ character?.species }}</p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ character?.name }}</h5>
+          <div
+            class="info-status"
+            attr.status="{{ character?.status | lowercase }}"
+            >
+            {{ character?.status }}
+          </div>
+          <label> Origin: </label>
+          <p>{{ character?.origin?.name }}</p>
+          <label> Last location: </label>
+          <p>{{ character?.location?.name }}</p>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+</a>

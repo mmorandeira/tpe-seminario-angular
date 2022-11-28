@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CHARACTERS } from './mock-characters';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +7,4 @@ import { CHARACTERS } from './mock-characters';
 })
 export class AppComponent {
   title = 'rick-and-morty';
-  CHARACTERS = CHARACTERS.results
 }

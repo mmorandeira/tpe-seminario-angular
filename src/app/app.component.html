@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand">Navbar</a>
+    <a class="navbar-brand"[routerLink]="['/']">Rick and Morty</a>
     <form class="d-flex">
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success" type="submit">Search</button>
@@ -8,8 +8,4 @@
   </div>
 </nav>
 
-<div class="row row-cols-1 row-cols-md-4 g-4">
-  <div *ngFor="let char of CHARACTERS" class="col">
-    <app-character-card [character]="char"></app-character-card>
-  </div>
-</div>
+<router-outlet></router-outlet>

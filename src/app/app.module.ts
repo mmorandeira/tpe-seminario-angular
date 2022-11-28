@@ -3,20 +3,28 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CharacterCardComponent } from './character-card/character-card.component';
+import { CharactersComponent } from './characters/characters.component';
+import { CharacterDetailComponent } from './character-detail/character-detail.component';
+import { RickAndMortyApiInterceptor } from './api/interceptors/rick-and-morty-api.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CharacterCardComponent
+    CharacterCardComponent,
+    CharactersComponent,
+    CharacterDetailComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule
+  imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RickAndMortyApiInterceptor,
+      multi: true,
+    },
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

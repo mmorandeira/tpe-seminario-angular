@@ -1,0 +1,14 @@
+<div class="row row-cols-1 row-cols-md-2 g-2">
+  <div *ngFor="let char of characters" class="col">
+    <app-character-card [character]="char"></app-character-card>
+  </div>
+</div>
+
+<ngb-pagination
+  class="d-flex justify-content-center"
+  (pageChange)="updateCharacters($event)"
+  [pageSize]="pageSize"
+  [collectionSize]="collectionSize"
+  [maxSize]="maxSize"
+  [boundaryLinks]="boundaryLinks"
+></ngb-pagination>
