@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CharactersService } from '../api/services/character.service';
+import { CharacterService } from '../api/services/character.service';
 import { Character } from '../api/interfaces';
 
 @Component({
@@ -17,7 +17,7 @@ export class CharactersComponent implements OnInit {
   maxSize = 5;
   boundaryLinks = true;
 
-  constructor(private characterService: CharactersService) {}
+  constructor(private characterService: CharacterService) {}
 
   ngOnInit(): void {
     this.updateCharacters(this.page);
