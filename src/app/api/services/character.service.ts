@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Info, Character } from '../interfaces';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CharactersService {
+export class CharacterService {
 
   constructor(private http: HttpClient) { }
 
@@ -15,4 +15,9 @@ export class CharactersService {
   getCharacters(page:Number): Observable<Info<Character[]>> {
     return this.http.get<Info<Character[]>>(`${this.characterUrl}?page=${page}`);
   }
+
+  getCharacter(id:number): Observable<Character> {
+    return this.http.get<Character>(`${this.characterUrl}/${id}`);
+  }
+
 }

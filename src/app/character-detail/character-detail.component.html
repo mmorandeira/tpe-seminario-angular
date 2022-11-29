@@ -1,11 +1,67 @@
 <div class="container">
-    <div class="row">
-      <div class="col">
-        <img src="{{character?.image}}" alt="" srcset="">
-      </div>
-      <div class="col">
-        <h2>{{character?.name}}</h2>
-        
-      </div>
+  <div class="row">
+    <div class="col d-flex justify-content-center img-div pt-5">
+      <img src="{{ character?.image }}" alt="" srcset="" />
     </div>
+    <div class="col">
+      <h2>{{ character?.name }}</h2>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Property</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Status</td>
+            <td>{{ character?.status ? character?.status : "-" }}</td>
+          </tr>
+          <tr>
+            <td>Specie</td>
+            <td>{{ character?.species ? character?.species : "-" }}</td>
+          </tr>
+          <tr>
+            <td>Type</td>
+            <td>{{ character?.type ? character?.type : "-" }}</td>
+          </tr>
+          <tr>
+            <td>Gender</td>
+            <td>{{ character?.gender ? character?.gender : "-" }}</td>
+          </tr>
+          <tr>
+            <td>Origin</td>
+            <td>
+              {{ character?.origin?.name ? character?.origin?.name : "-" }}
+            </td>
+          </tr>
+          <tr>
+            <td>Location</td>
+            <td>
+              {{ character?.location?.name ? character?.location?.name : "-" }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ngb-accordion #acc="ngbAccordion">
+        <ngb-panel
+          *ngFor="let season of seasons | keyvalue"
+          [title]="'Season ' + season.key"
+        >
+          <ng-template ngbPanelContent>
+            <ol>
+              <li
+                *ngFor="let ep of season.value"
+                [value]="getEpisode(ep.episode)"
+              >
+                {{ ep.name }}
+              </li>
+            </ol>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+    </div>
+  </div>
 </div>
