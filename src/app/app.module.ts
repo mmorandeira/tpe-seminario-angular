@@ -9,6 +9,7 @@ import { CharacterCardComponent } from './character-card/character-card.componen
 import { CharactersComponent } from './characters/characters.component';
 import { CharacterDetailComponent } from './character-detail/character-detail.component';
 import { RickAndMortyAPIInterceptor } from './api/interceptors/rick-and-morty-api.interceptor';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { RickAndMortyAPIInterceptor } from './api/interceptors/rick-and-morty-ap
     CharacterCardComponent,
     CharactersComponent,
     CharacterDetailComponent,
+    PageNotFoundComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule],
   providers: [

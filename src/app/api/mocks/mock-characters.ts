@@ -1,4 +1,4 @@
-import { Info, Character } from "./interfaces";
+import { Info, Character } from "../interfaces";
 
 export const CHARACTERS: Info<Character[]> = {
     "info": {

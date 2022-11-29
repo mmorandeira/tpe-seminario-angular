@@ -1,9 +1,9 @@
 <a [routerLink]="['/characters', character?.name]" [state]="{character}">
-  <div class="card mb-3" style="max-width: 540px">
-    <div class="row g-0">
+  <div class="card">
+    <div class="row">
       <div class="col-md-4 image">
         <img src="{{ character?.image }}" class="card-img-top" alt="..." />
-        <div class="img-specie" attr.specie="{{ character?.species | lowercase }}">
+        <div [ngClass]="getSpeciesClasses()">
           <p>{{ character?.species }}</p>
         </div>
       </div>
@@ -11,8 +11,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ character?.name }}</h5>
           <div
-            class="info-status"
-            attr.status="{{ character?.status | lowercase }}"
+            [ngClass]="getStatusClasses()"
             >
             {{ character?.status }}
           </div>
