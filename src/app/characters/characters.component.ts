@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CharacterService } from '../api/services/character.service';
-import { Character } from '../api/interfaces';
+import { Character, CharacterFilter } from '../api/interfaces';
+import { SearchStateService } from '../state/search-state.service';
 
 @Component({
   selector: 'app-characters',
@@ -8,29 +9,43 @@ import { Character } from '../api/interfaces';
   styleUrls: ['./characters.component.css'],
 })
 export class CharactersComponent implements OnInit {
-  
   characters: Character[] = [];
 
-  page = 1;
+  filter: CharacterFilter = {
+    name: '',
+    page: 1,
+  };
+
   pageSize = 20;
   collectionSize = 826;
   maxSize = 5;
   boundaryLinks = true;
 
-  constructor(private characterService: CharacterService) {}
+  constructor(
+    private characterService: CharacterService,
+    private searchStateService: SearchStateService
+  ) {
+    searchStateService.searchFilter.subscribe((searchFilter) => {
+      this.filter = searchFilter;
+      this.updateCharacters();
+    });
+  }
 
   ngOnInit(): void {
-    this.updateCharacters(this.page);
+    this.updateCharacters();
   }
 
-  updateCharacters(page:number): void {
-    this.page = page;
+  onPageChange(page: number) {
+    this.filter.page = page;
+    this.updateCharacters();
+  }
+
+  updateCharacters(): void {
     this.characterService
-      .getCharacters(this.page)
+      .getCharacters(this.filter)
       .subscribe((infoCharacters) => {
         this.characters = infoCharacters.results ?? [];
+        this.collectionSize = infoCharacters.info?.count ?? 0;
       });
   }
-
-
 }
