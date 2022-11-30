@@ -1,23 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Info, Character } from '../interfaces';
+import { Info, Character, CharacterFilter } from '../interfaces';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CharacterService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
+  private characterUrl = 'api/character';
 
-  private characterUrl = 'api/character'; 
-
-  getCharacters(page:Number): Observable<Info<Character[]>> {
-    return this.http.get<Info<Character[]>>(`${this.characterUrl}?page=${page}`);
+  getCharacters(filter?: CharacterFilter): Observable<Info<Character[]>> {
+    const params = new URLSearchParams(filter as Record<string, string>)
+      .toString()
+      .replace(/\w+=&/g, '')
+      .replace(/&\w+=$/, '');
+    return this.http.get<Info<Character[]>>(`${this.characterUrl}/?${params}`);
   }
 
-  getCharacter(id:number): Observable<Character> {
+  getCharacter(id: number): Observable<Character> {
     return this.http.get<Character>(`${this.characterUrl}/${id}`);
   }
-
 }

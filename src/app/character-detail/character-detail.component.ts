@@ -4,7 +4,9 @@ import { Character, Episode } from '../api/interfaces';
 import { CharacterService } from '../api/services/character.service';
 import { EpisodeService } from '../api/services/episode.service';
 
-interface Seasons { [key: number]: Episode[] }
+interface Seasons {
+  [key: number]: Episode[];
+}
 
 @Component({
   selector: 'app-character-detail',
@@ -12,12 +14,8 @@ interface Seasons { [key: number]: Episode[] }
   styleUrls: ['./character-detail.component.css'],
 })
 export class CharacterDetailComponent implements OnInit {
-  
-  
   @Input()
   character: Character | undefined;
-
-  
 
   episodes: any;
   seasons: Seasons = {};
@@ -45,15 +43,15 @@ export class CharacterDetailComponent implements OnInit {
     return Number(url.substring(url.lastIndexOf('/') + 1));
   }
 
-  getEpisode(episode:string): number {
-    return Number(episode.substring(4,6));
+  getEpisode(episode: string): number {
+    return Number(episode.substring(4, 6));
   }
 
   getSeason(episode: string): number {
     return Number(episode.substring(1, 3));
   }
 
-  getSeasonsObjectFromEpisodes(episodes:Episode[]):Seasons  {
+  getSeasonsObjectFromEpisodes(episodes: Episode[]): Seasons {
     const seasons: Seasons = {};
     episodes.forEach((episode) => {
       const season = this.getSeason(episode.episode);
@@ -67,7 +65,7 @@ export class CharacterDetailComponent implements OnInit {
     const episodesIds: number[] = episodes.map((url) =>
       this.getEpisodeIdFromUrl(url)
     );
-    if(episodesIds.length > 1) {
+    if (episodesIds.length > 1) {
       this.episodeService.getEpisodes(episodesIds).subscribe((episodes) => {
         this.seasons = this.getSeasonsObjectFromEpisodes(episodes);
       });
@@ -76,6 +74,5 @@ export class CharacterDetailComponent implements OnInit {
         this.seasons = this.getSeasonsObjectFromEpisodes([ep]);
       });
     }
-    
   }
 }

@@ -23,8 +23,8 @@ export class CharacterCardComponent implements OnInit {
 
   getStatusClasses(): string[] {
     const classes = ['info-status'];
-    if(this.character)
-      classes.push(`info-status-${this.character.status.toLowerCase()}`)
+    if (this.character)
+      classes.push(`info-status-${this.character.status.toLowerCase()}`);
     return classes;
   }
 }
